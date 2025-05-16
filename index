@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Urbance</title>
+  <script>
+    // تحقق واش كاين مستخدم
+    window.onload = function() {
+      const user = localStorage.getItem('user');
+      if (user) {
+        document.getElementById('welcome-msg').innerText = "مرحبا، " + user;
+        document.getElementById('account-icon').style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body style="background:black; color:white; font-family:sans-serif;">
+
+  <header style="display:flex; justify-content:space-between; padding:1rem;">
+    <h1>Urbance</h1>
+    <div>
+      <span id="welcome-msg"></span>
+      <a id="account-icon" href="signup.html" style="color:white; font-size:1.5rem;">👤</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>مرحبا بك في أوربانس 👕</h2>
+  </main>
+
+</body>
+</html>
