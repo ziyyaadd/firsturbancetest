@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Panier - Urbance</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       background-color: black;
@@ -80,11 +80,12 @@
     <div>
       <a href="index.html"><i class="fas fa-home"></i></a>
       <a href="signup.html"><i class="fas fa-user"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
     </div>
   </header>
 
   <div class="container">
-    <h2>🛒 سلة المشتريات</h2>
+    <h2>Panier</h2>
 
     <div class="cart-item">
       <img src="https://via.placeholder.com/80" alt="Produit" />
@@ -93,16 +94,19 @@
         <p>199 DH</p>
       </div>
       <div class="cart-actions">
-        <button>إزالة</button>
+        <button class="remove-btn">remove</button>
       </div>
     </div>
 
-    <!-- تقدر تكرر .cart-item حسب عدد المنتجات -->
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <button>إكمال الشراء</button>
+    <div class="cart-item">
+      <img src="https://via.placeholder.com/80" alt="Produit" />
+      <div class="cart-details">
+        <h3>Casquette Urbance</h3>
+        <p>99 DH</p>
+      </div>
+      <div class="cart-actions">
+        <button class="remove-btn">remove</button>
+      </div>
     </div>
-  </div>
 
-</body>
-</html>
+    <div style="text-align: center; margin-top: 2rem
