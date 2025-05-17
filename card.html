@@ -1,112 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>Panier - Urbance</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>سلة Urbance</title>
   <style>
     body {
-      background-color: black;
+      background: black;
       color: white;
       font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #111;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header a {
-      color: white;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-    }
-
-    .container {
       padding: 2rem;
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
     .cart-item {
-      display: flex;
-      justify-content: space-between;
-      background-color: #1a1a1a;
+      background: #222;
       padding: 1rem;
       margin-bottom: 1rem;
       border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
     .cart-item img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
+      width: 60px;
+      height: 60px;
       border-radius: 5px;
     }
-
-    .cart-details {
-      flex: 1;
-      margin-left: 1rem;
-    }
-
-    .cart-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    button {
-      background-color: white;
+    .remove-btn {
+      background: white;
       color: black;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      padding: 5px 10px;
       cursor: pointer;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>URBANCE</h1>
-    <div>
-      <a href="index.html"><i class="fas fa-home"></i></a>
-      <a href="signup.html"><i class="fas fa-user"></i></a>
-      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-    </div>
-  </header>
+  <h1>🛒 سلة المشتريات</h1>
+  <div id="cart-container"></div>
 
-  <div class="container">
-    <h2>Panier</h2>
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('cart-container');
+      container.innerHTML = '';
 
-    <div class="cart-item">
-      <img src="https://via.placeholder.com/80" alt="Produit" />
-      <div class="cart-details">
-        <h3>T-Shirt Urbance</h3>
-        <p>199 DH</p>
-      </div>
-      <div class="cart-actions">
-        <button class="remove-btn">remove</button>
-      </div>
-    </div>
+      if (cart.length === 0) {
+        container.innerHTML = '<p>السلة فارغة</p>';
+        return;
+      }
 
-    <div class="cart-item">
-      <img src="https://via.placeholder.com/80" alt="Produit" />
-      <div class="cart-details">
-        <h3>Casquette Urbance</h3>
-        <p>99 DH</p>
-      </div>
-      <div class="cart-actions">
-        <button class="remove-btn">remove</button>
-      </div>
-    </div>
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div>
+            <h3>${item.name}</h3>
+            <p>${item.price} DH</p>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">إزالة</button>
+        `;
+        container.appendChild(div);
+      });
+    }
 
-    <div style="text-align: center; margin-top: 2rem
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    loadCart();
+  </script>
+</body>
+</html>
